@@ -1,0 +1,308 @@
+body {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    line-height: 24px;
+    color: #1c1c1c;
+}
+
+::-webkit-input-placeholder {
+    color: #1c1c1c;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #1c1c1c;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #1c1c1c;
+}
+
+:-ms-input-placeholder {
+    color: #1c1c1c;
+}
+
+
+/* Sign in screen */
+
+.container {
+    padding: 25px 25px 0;
+}
+
+h3 {
+    font-size: 26px;
+    line-height: 44px;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: block;
+    width: 260px;
+    max-width: 100%;
+    margin: 60px auto 100px;
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+.signin input {
+    width: 100%;
+    padding: 7px 12px;
+    border: none;
+    border-bottom: #aaaaaa 1px solid;
+    margin-bottom: 50px;
+    font-size: 20px;
+    line-height: 34px;
+    color: #1c1c1c;
+}
+
+.go_btn {
+    width: 100%;
+    border: none;
+    background: #0071bb;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    padding: 15px;
+}
+
+
+/* Main Screen */
+
+.main {
+    padding: 15px;
+}
+
+.main header {
+    margin: 0 0 30px;
+}
+
+.main header:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.main .brand {
+    margin: 0;
+    float: left;
+}
+
+.main .brand img {
+    width: 180px;
+}
+
+.main .logout {
+    float: right;
+    width: 36px;
+    margin: 3px 0;
+}
+
+.nav-tabs {
+    margin: 0 -15px;
+}
+
+.nav-tabs>li {
+    width: 50%;
+}
+
+.nav-tabs>li>a {
+    border: none;
+    border-bottom: solid 4px #e9e9e9;
+    font-size: 19px;
+    text-align: center;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    border: none;
+    border-bottom: solid 4px #0072bb;
+}
+
+.tab-content {
+    margin: 0 -15px;
+    background: #e9e9e9;
+}
+
+.reservation-list {
+    border-bottom: solid 1px #cdcdcd;
+    background: #fff;
+}
+
+.reservation-list:after {
+    clear: both;
+    content: '';
+    display: block;
+}
+.tab-content ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.tab-content li:nth-child(even) .reservation-list{
+	background: #e9e9e9;
+}
+.tab-content li:nth-child(even) .reservation-list .date-stamp {
+	background: #c2dbeb;
+}
+.reservation-list .date-stamp {
+    background: #e9e9e9;
+    padding: 20px;
+    width: 30%;
+}
+
+.reservation-list .date-stamp .date {
+    color: #0072bb;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.reservation-list .date-stamp .month {
+    color: #0072bb;
+    font-size: 18px;
+    text-align: center;
+}
+
+.reservation-list .date-stamp span {
+    display: block;
+}
+
+.reservation-list .reservation-items {
+    width: 70%;
+    padding: 5px 15px;
+}
+
+.reservation-list .reservation-items h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.reservation-list .reservation-items span {
+	font-size: 16px;
+}
+
+.reservation-form{
+	    margin: 15px;
+    background: #fff;
+    padding: 15px;
+}
+.reservation-form:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+/* Time slot */
+.modal-header {
+	background: #0072bb;
+	color: #fff;
+}
+.modal-footer {
+	text-align: center;
+}
+.slot-header:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.slot-header h4{
+	float: left;
+    margin: 0;
+    color: #0072bb;	
+}
+.slot-header .legends{
+	float: left;
+	padding-left: 15px;
+}
+.slot-header .legends ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.slot-header .legends li{
+	display: block;
+	clear: both;
+}
+.slot-header .legends li.available:before {
+	display: block;
+    float: left;
+    content: '';
+    background: #fff;
+    border: solid 1px #e9e9e9;
+    height: 16px;
+    width: 16px;
+    vertical-align: bottom;
+    margin: 5px;
+}
+.slot-header .legends li.reserved:before {
+	display: block;
+    float: left;
+    content: '';
+    background: #e9e9e9;
+    border: solid 1px #e9e9e9;
+    height: 16px;
+    width: 16px;
+    vertical-align: bottom;
+    margin: 5px;
+}
+.tab-content ul.time-slots {
+	list-style: none;
+	padding: 0;
+	margin:20px 0;
+}
+ul.time-slots:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.time-slots li{
+	display: block;
+	width: 48%;
+	margin: 1%;
+	padding: 10px;
+	float: left;
+}
+.time-slots li.available{
+	border: solid 1px #9f9f9f;
+	background: #fff;
+}
+.time-slots li.reserved{
+	border: solid 1px #9f9f9f;
+	background: #e9e9e9;
+}
+.time-slots li.active{
+	border: solid 1px #0072bb;
+	background: #0072bb;
+}
+
+@media screen and (max-width:360px) {
+    .signin {
+        padding: 30px 15px;
+    }
+    h3 {
+        margin-bottom: 30px;
+    }
+    .logo {
+        margin: 50px auto 80px;
+    }
+    .signin input {
+        margin-bottom: 40px;
+    }
+    .go_btn {
+        padding: 15px;
+    }
+    .go_btn img {
+        width: 30px;
+    }
+}
