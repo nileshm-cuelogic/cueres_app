@@ -15,8 +15,8 @@ angular.module('starter.controllers', [])
 
       console.log($scope.objLoginUserDetails);
         LoginService.loginUser($scope.objLoginUserDetails).then(function(data) {
-          console.log(data)
-            if(data.success == 1){
+          console.log(data.data)
+            if(data.data.success == 1){
               $state.go('tab.dash');
             }else{
               var alertPopup = $ionicPopup.alert({
@@ -46,6 +46,9 @@ angular.module('starter.controllers', [])
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
+})
+.controller('DashCtrl', function($scope, Chats) {
+
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
