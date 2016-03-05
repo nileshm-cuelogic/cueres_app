@@ -1,1 +1,17 @@
 /* Empty. Add your own CSS if you like */
+.tabs {
+	position: relative;
+	top: 45px;
+}
+.tab-item .icon {
+	display: none;
+}
+.tab-item span{
+	font-size: 20px;
+	display: inline-block;
+	line-height: 40px;
+	
+}
+.tab-item {
+	max-width: 50%;
+}
