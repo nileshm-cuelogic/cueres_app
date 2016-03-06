@@ -48,9 +48,10 @@ angular.module('starter.controllers', [])
         $scope.reservation = function() {
                 $scope.objReservationListDetails.action = "myBookedSlots";
                 $scope.objReservationListDetails.uid = localStorage.getItem("uid");
-                
+
                 ReservationService.reservationList($scope.objReservationListDetails).then(function(data) {
-                  $scope.reservations =  data;
+                  $scope.reservations =  data.data.data;
+                  console.log($scope.reservations);
 
                 }).catch(function(fallback) {
                     var alertPopup = $ionicPopup.alert({
@@ -62,7 +63,85 @@ angular.module('starter.controllers', [])
 
     })
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('ChatsCtrl', function($scope, ReservationService, $ionicPopup) {
+
+  $scope.objNewReservation = {};
+  $scope.objInput = {};
+  $scope.availableSlots = {};
+
+  $scope.data ={};
+  $scope.data.reservation_date = new Date();
+  $scope.minDate = new Date(2016, 1, 1);
+  $scope.maxDate = new Date(2020, 12, 31);
+   
+  $scope.datePickerCallback = function (val) {
+    if (!val) { 
+      console.log('Date not selected');
+    } else {
+      console.log('Selected date is : ', val);
+    }
+  };
+
+  $scope.durations = [20,30,40,60];
+  $scope.categories = [
+      { "category_id":"1", "category":"Conference Room" },
+      { "category_id":"2", "category":"Meeting Room" }
+  ];
+
+  $scope.newReservation = function(){
+      $scope.objNewReservation.action = "bookApt";
+      console.log($scope.reservation_date);
+      $scope.objNewReservation.category_id = $scope.data.category_id;
+      $scope.objNewReservation.reservation_date = $scope.data.reservation_date;
+      $scope.objNewReservation.duration = $scope.data.duration;
+      $scope.objNewReservation.time_slot = $scope.data.time_slot;
+      $scope.objNewReservation.purpose = $scope.data.purpose;
+
+      ReservationService.newReservation($scope.objNewReservation).then(function(data){
+          console.log(data);
+      }).catch(function(fallback){
+          console.log(fallback);
+          var alertPopup = $ionicPopup.alert({
+              title: 'New Reservation',
+              template: 'Could not reserve selected time slot!'
+          });
+      });
+
+  }
+
+  $scope.getAvailableSlots = function(){
+
+
+    $scope.objInput.action = "availableSlots";
+
+    var tDate =  $scope.data.reservation_date;
+
+    var dd = tDate.getDate();
+    var mm = tDate.getMonth();
+    var yy = tDate.getFullYear();
+
+
+    $scope.objInput.reservation_date = yy + '-'+ mm + '-'+dd;
+    $scope.objInput.duration = $scope.data.duration;
+    $scope.objInput.category_id = $scope.data.category_id.category_id;
+
+    ReservationService.getAvailableSlots($scope.objInput).then(function(data){
+      console.log(data);
+      if(data != undefined || data != null)
+      {
+        $scope.availableSlots = data.data.data.available;
+        console.log($scope.availableSlots);
+      }
+      
+    }).catch(function(fallback){
+       console.log(fallback);
+          var alertPopup = $ionicPopup.alert({
+              title: 'Time Slots',
+              template: 'Could not fetch Time Slots!'
+          }); 
+    });
+
+  }
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -73,10 +152,10 @@ angular.module('starter.controllers', [])
     $('.modal').appendTo("body");
     // alert(22);
 
-    $('.datepicker').datepicker({
+    /*$('.datepicker').datepicker({
         format: 'mm/dd/yyyy',
         startDate: '-3d'
-    });
+    });*/
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

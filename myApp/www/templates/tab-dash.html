@@ -4,9 +4,9 @@
             <ul ng-init="reservation()">
                 <li ng-repeat="reservation in reservations">
                     <div class="reservation-list">
-                        <div class="pull-left date-stamp"><span class="date">12</span><span class="month">March</span></div>
+                        <div class="pull-left date-stamp"><span class="date">{{reservation.book_date | date : format : timestamp}}</span></span></div>
                         <div class="pull-left reservation-items">
-                            <h3>Conference Hall</h3><span>11:00 - 11:30 am</span></div>
+                            <h3>{{reservation.category}}</h3><span>{{reservation.book_from}} - {{reservation.book_to}}</span></div>
                     </div>
                 </li>
                 <!-- <li>

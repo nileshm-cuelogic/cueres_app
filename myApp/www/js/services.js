@@ -86,6 +86,33 @@ angular.module('starter.services', [])
         });
     }
 
+    function newReservation(objNewReservation){
+        console.log(objNewReservation);
+        return $http({
+            method: 'POST',
+            url: 'http://localhost/cueres/',
+            headers: {
+                'Content-Type': true
+            },
+            data: objNewReservation
+        });   
+    }
+
+    function getAvailableSlots(objInput){
+        console.log(objInput);
+        return $http({
+            method: 'POST',
+            url: 'http://localhost/cueres/',
+            headers: {
+                'Content-Type': true
+            },
+            data: objInput
+        });   
+    }
+
+    ReservationService.getAvailableSlots = getAvailableSlots;
     ReservationService.reservationList = reservationList;
+    ReservationService.newReservation = newReservation;
+
     return ReservationService;
 });

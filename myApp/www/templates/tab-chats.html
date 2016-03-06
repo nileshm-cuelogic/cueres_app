@@ -1,87 +1,84 @@
 <ion-view>
-  <ion-content>
-    <form class="form-horizontal reservation-form">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 col-xs-4 control-label">Reserve</label>
-                            <div class="col-sm-10 col-xs-8">
-                                <select class="form-control">
-                                    <option>Conference</option>
-                                    <option>Meeting Room</option>
-                                    <option>Hardware</option>
-                                    <option>TT Table</option>
-                                </select>
+    <ion-content>
+        <form class="form-horizontal reservation-form">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 col-xs-4 control-label">Reserve</label>
+                <div class="col-sm-10 col-xs-8">
+                    <select class="form-control" ng-options="item as item.category for item in categories track by item.category_id" ng-model="data.category_id"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 col-xs-4 control-label">Date</label>
+                <div class="col-sm-10 col-xs-8">
+                    <ionic-datepicker date="data.reservation_date" min="minDate" max="maxDate" callback="datePickerCallback">
+                    <button class="button button-block button-positive" ng-model="data.reservation_date" > {{ data.reservation_date | date:'MMMM/dd/yyyy'  }} </button>
+                </ionic-datepicker>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 col-xs-4 control-label">Duration</label>
+                <div class="col-sm-10 col-xs-8">
+                    <select ng-model="data.duration" class="form-control">
+                        <option  value="30">30 min</option>
+                        <option value="60">1 hr</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 col-xs-4 control-label">Time Slot</label>
+                <div class="col-sm-10 col-xs-8">
+                    <a class="glyphicon glyphicon-th-large" href="javascript:void(0);" ng-click="getAvailableSlots()" data-toggle="modal" data-target="#myModal"></a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 col-xs-4 control-label">Purpose</label>
+                <div class="col-sm-10 col-xs-8">
+                    <textarea class="form-control" ng-model="data.purpose" rows="3"></textarea>
+                </div>
+            </div>
+            <div class=" col-sm-10 col-xs-8 col-sm-offset-2 col-xs-offset-4">
+                <button ng-click="newReservation()" class="btn btn-primary">Submit</button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Choose your prefered time Slot</h4>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 col-xs-4 control-label">Date</label>
-                            <div class="col-sm-10 col-xs-8">
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
+                            <div class="modal-body">
+                                <div class="slot-header">
+                                    <h4 ng-model="data.reservation_date">{{data.reservation_date}}</h4>
+                                    <div class="legends">
+                                        <ul>
+                                            <li class="available">Available Slots</li>
+                                            <li class="reserved">Reserved Slots</li>
+                                        </ul>
                                     </div>
                                 </div>
+                                <ul class="time-slots">
+                                    <li ng-repeat=" item in availableSlots" >
+                                        {{item.time}}
+                                    </li>
+                                </ul>
+                                <!--<ul class="time-slots">
+                                    <li class="available">11:00 - 11:30</li>
+                                    <li class="reserved">11:00 - 11:30</li>
+                                    <li class="reserved">11:00 - 11:30</li>
+                                    <li class="available">11:00 - 11:30</li>
+                                    <li class="reserved">11:00 - 11:30</li>
+                                    <li class="available">11:00 - 11:30</li>
+                                    <li class="available">11:00 - 11:30</li>
+                                    <li class="reserved">11:00 - 11:30</li>
+                                    <li class="available">11:00 - 11:30</li>
+                                </ul>-->
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-primary">Reserve</button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 col-xs-4 control-label">Duration</label>
-                            <div class="col-sm-10 col-xs-8">
-                                <select class="form-control">
-                                    <option value="30">30 min</option>
-                                    <option value="60">1 hr</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 col-xs-4 control-label">Time Slot</label>
-                            <div class="col-sm-10 col-xs-8">
-                                <a class="glyphicon glyphicon-th-large" href="javascript:void(0);" data-toggle="modal" data-target="#myModal"></a>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 col-xs-4 control-label">Purpose</label>
-                            <div class="col-sm-10 col-xs-8">
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class=" col-sm-10 col-xs-8 col-sm-offset-2 col-xs-offset-4">
-                            <button class="btn btn-primary">Submit</button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Choose your prefered time Slot</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="slot-header">
-                                                <h4>21st March 2016</h4>
-                                                <div class="legends">
-                                                    <ul>
-                                                        <li class="available">Available Slots</li>
-                                                        <li class="reserved">Reserved Slots</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <ul class="time-slots">
-                                              <li class="available">11:00 - 11:30</li>
-                                              <li class="reserved">11:00 - 11:30</li>
-                                              <li class="reserved">11:00 - 11:30</li>
-                                              <li class="available">11:00 - 11:30</li>
-                                              <li class="reserved">11:00 - 11:30</li>
-                                              <li class="available">11:00 - 11:30</li>
-                                              <li class="available">11:00 - 11:30</li>
-                                              <li class="reserved">11:00 - 11:30</li>
-                                              <li class="available">11:00 - 11:30</li>
-                                            </ul>
-                                        </div>
-                                        <div class="modal-footer text-center">
-                                            <button type="button" class="btn btn-primary">Reserve</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </form>
-  </ion-content>
+                    </div>
+                </div>
+        </form>
+    </ion-content>
 </ion-view>
