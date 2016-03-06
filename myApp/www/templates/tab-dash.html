@@ -1,5 +1,28 @@
-<ion-view view-title="Dashboard">
-  <ion-content class="padding">
-    
-  </ion-content>
+<ion-view>
+    <ion-content>
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <ul ng-init="reservation()">
+                <li ng-repeat="reservation in reservations">
+                    <div class="reservation-list">
+                        <div class="pull-left date-stamp"><span class="date">12</span><span class="month">March</span></div>
+                        <div class="pull-left reservation-items">
+                            <h3>Conference Hall</h3><span>11:00 - 11:30 am</span></div>
+                    </div>
+                </li>
+                <!-- <li>
+                    <div class="reservation-list">
+                        <div class="pull-left date-stamp"><span class="date">12</span><span class="month">March</span></div>
+                        <div class="pull-left reservation-items">
+                            <h3>Conference Hall</h3><span>11:00 - 11:30 am</span></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="reservation-list">
+                        <div class="pull-left date-stamp"><span class="date">12</span><span class="month">March</span></div>
+                        <div class="pull-left reservation-items">
+                            <h3>Conference Hall</h3><span>11:00 - 11:30 am</span></div>
+                    </div>
+                </li> -->
+        </div>
+    </ion-content>
 </ion-view>

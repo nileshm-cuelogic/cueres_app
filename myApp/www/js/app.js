@@ -88,4 +88,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 
-});
+})
+// .config(function(localStorageServiceProvider) {
+//         if (window.location.host == "localhost" || window.location.host === "localhost:4000" || window.location.host === "localhost:4002") {
+//             localStorageServiceProvider
+//                 .setPrefix('auth')
+//                 .setStorageType('localStorage')
+//                 .setNotify(true, true);
+//         } else {
+//             localStorageServiceProvider
+//                 .setPrefix('auth')
+//                 .setStorageType('localStorage')
+//                 .setStorageCookieDomain('tandemapp.com')
+//                 .setNotify(true, true);
+//         }
+//     });

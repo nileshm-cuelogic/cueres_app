@@ -15,3 +15,7 @@
 .tab-item {
 	max-width: 50%;
 }
+.modal{
+	display: none;
+	z-index: 11;
+}

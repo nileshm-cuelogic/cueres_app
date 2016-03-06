@@ -68,4 +68,24 @@ angular.module('starter.services', [])
             data: objLoginUserDetails
         });
     }
+})
+.service('ReservationService', function($http) {
+
+    var ReservationService = {};
+
+
+    function reservationList(objReservationList) {
+        console.log(objReservationList)
+        return $http({
+            method: 'POST',
+            url: 'http://localhost/cueres/',
+            headers: {
+                'Content-Type': true
+            },
+            data: objReservationList
+        });
+    }
+
+    ReservationService.reservationList = reservationList;
+    return ReservationService;
 });
